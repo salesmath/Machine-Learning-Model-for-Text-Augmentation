@@ -1,0 +1,46 @@
+# For entertainment purposes only. 
+# This program will utilize a machine learning model to take user input and
+# produce output from text dataset augmentation. Specifically, the model will take a
+# user input of a text, find the top synonym of the text, the top antonym of the text,
+# the next top synonym of the antonym of the text, the next top antonym of the synonym
+# of the text, and output the four texts.
+
+def synonym_antonym_extractor(phrase):
+     from nltk.corpus import wordnet
+     synonyms = []
+     antonyms = []
+
+     for syn in wordnet.synsets(phrase):
+          for l in syn.lemmas():
+               synonyms.append(l.name())
+               if l.antonyms():
+                    antonyms.append(l.antonyms()[0].name())
+
+     synonyms1 = []
+     antonyms1 = []
+
+     for syn in wordnet.synsets(phrase):
+          for l in syn.lemmas():
+               synonyms1.append(l.name())
+               if l.antonyms():
+                    antonyms1.append(l.antonyms()[0].name())
+
+     if len(synonyms) == 0:
+         print("none")
+     else:
+         print(synonyms[0])
+     if len(antonyms) == 0:
+         print("none")
+     else:
+         print(antonyms[0])
+     if len(synonyms1) == 0:
+         print("none")
+     else:
+         print(synonyms1[1])
+     if len(antonyms1) == 0:
+         print("none")
+     else:
+         print(antonyms1[1])
+
+text = input("Enter a word in all lower case letter: ")
+synonym_antonym_extractor(phrase= text)
